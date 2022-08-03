@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  overflow: auto;
+  position: relative;
+  width: 80%;
+  margin: 25px auto;
+}
+.container__links {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+form {
+  width: 100%;
+  margin: 125px auto;
+  text-align: center;
+}
+
+a {
+  display: block;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 5px auto;
+}
+a:hover, a:focus, a:active {
+  text-decoration: none;
+}
+
+.search-field, .search-submit {
+  display: block;
+  margin: 25px auto;
+  outline: none;
+}
+
+.search-field {
+  width: 500px;
+  height: 35px;
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 75px;
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+}
+.search-field:hover {
+  box-shadow: 0px 2.5px 2.5px rgba(0, 0, 0, 0.267);
+}
+
+.advanced-search-field-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px auto;
+  width: 600px;
+  font-size: 16px;
+}
+.advanced-search-field-container--header {
+  font-size: 22px;
+  margin: 25px auto;
+}
+
+.advanced-search-field {
+  width: 400px;
+  height: 20px;
+  background-color: #fff;
+  padding: 2.5px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+}
+.advanced-search-field:focus {
+  outline: 1px solid rgb(17, 17, 235);
+}
+
+.search-submit {
+  display: inline-block;
+  padding: 12px 17.5px;
+  border: 0;
+  background-color: #fff;
+  border-radius: 7.5px;
+}
+.search-submit:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.267);
+}
+.search-submit--advanced-search {
+  background-color: rgb(17, 17, 235);
+  color: #fff;
+}
+
+/*# sourceMappingURL=index.css.map */
