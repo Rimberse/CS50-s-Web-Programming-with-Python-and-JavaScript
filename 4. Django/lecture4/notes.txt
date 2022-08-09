@@ -1,0 +1,6 @@
+pip3 install Django - to install Django on your PC
+
+django-admin startproject PROJECT_NAME - creates a django project
+python manage.py runserver - run the server on localhost
+python manage.py startapp hello - creates an app called hello within this django project
+python manage.py migrate - migrates the data into the database (creates all default table inside the database)
