@@ -4,3 +4,8 @@ django-admin startproject PROJECT_NAME - creates a django project
 python manage.py runserver - run the server on localhost
 python manage.py startapp hello - creates an app called hello within this django project
 python manage.py migrate - migrates the data into the database (creates all default table inside the database)
+
+python manage.py makemigrations - migrates the model after specifying the model in models.py
+python manage.py migrate - applies the migrations, creates the table and db
+python manage.py shell - to execute python commands in a shell
+python manage.py createsuperuser - permits to create an admin account
