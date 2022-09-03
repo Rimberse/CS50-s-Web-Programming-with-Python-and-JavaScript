@@ -1,0 +1,13 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Category: {{ name }}</h2>
+
+    {% include "auctions/listing_layout.html" %}
+
+    {% if not listings %}
+        <ul class="list-group">
+            <li class="list-group-item listing-item">No listings were found in this category.</li>
+        </ul>
+    {% endif %}
+{% endblock %}

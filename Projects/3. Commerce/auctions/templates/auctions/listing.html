@@ -1,0 +1,106 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Listing: {{ listing.title }}</h2>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'watch' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" type="hidden" name="listing_id" value="{{ listing.id }}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="hidden" name="user_id" value="{{ user.id }}">
+            </div>
+            <input class="btn btn-secondary" data-bs-toggle="button" aria-pressed="true" type="submit" value="Watchlist">
+        </form>
+    {% endif %}
+
+    <img class="listing-image" src="{{ listing.image }}">
+    <p>{{ listing.description }}</p>
+    <b><p class="listing-price">Price: {{ listing.price }} &#x20AC;</p></b>
+
+    {% if user.is_authenticated %}
+        {% if message %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+            <form action="{% url 'close' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="listing_id" value="{{ listing.id }}">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="user_id" value="{{ user.id }}">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Close auction">
+            </form>
+        {% elif winner %}
+            <div class="alert alert-success" role="alert">
+                <p>This auction has ended</p>
+                <hr>
+                <h4 class="alert-heading">
+                    {% if user.username == winner.username %}
+                        Congratulations! You're the winner of this auction
+                    {% else %}
+                        The auction winner: {{ winner }}
+                    {% endif %}
+                </h4>
+            </div>
+        {% else %}
+            <form action="{% url 'bid' %}" method="post">
+                {% csrf_token %}
+                <label for="bid" class="form-label">{{ bids }} bid(s) so far. Your bid is the current bid.</label>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="listing_id" value="{{ listing.id }}">
+                </div>
+                <div class="form-group">
+                    <!-- Can't place lower than starting bid -->
+                    <input class="form-control" id="bid" type="number" min="{{ starting_bid }}" name="bid" placeholder="Bid">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="hidden" name="user_id" value="{{ user.id }}">
+                </div>
+                <input class="btn btn-primary" type="submit" value="Place bid">
+            </form>
+        {% endif %}
+    {% endif %}
+
+    <h3 class="listing-header">Details:</h3>
+    <ul>
+        <li>
+            Listed by: {{ listing.owner }}
+        </li>
+        <li>
+            Category: {{ listing.category }}
+        </li>
+        <li>
+            Listed on: {{ listing.date }}
+        </li>
+    </ul>
+
+    <h3 class="listing-header">Comments:</h3>
+    <ul class="list-group">
+        {% for comment in listing.comments.all %}
+            <li class="list-group-item">
+                <b><h5>{% if comment.author.id == listing.owner.id %}Creator: {% endif %}{{ comment.author }}</h5></b>
+                <p>{{ comment.text }}</p>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No comments.</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        <h3 class="listing-header">Add a comment:</h3>
+
+        <form action="{% url 'comment' listing.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea autofocus class="form-control" name="text" placeholder="Your comment" rows="10" cols="70"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="hidden" value={{ user.id }} name="user_id">
+            </div>
+            <input type="submit" value="Send">
+        </form>
+    {% endif %}
+{% endblock %}

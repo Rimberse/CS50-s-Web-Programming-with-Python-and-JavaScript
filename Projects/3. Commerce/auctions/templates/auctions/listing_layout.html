@@ -1,0 +1,25 @@
+{% block listing %}
+    <ul class="list-group">
+        {% for listing in listings %}
+            <li class="list-group-item listing-item">
+            <a class="nav-link" href="{% url 'listings' listing.id %}">
+                <div class="container text-center">
+                    <div class="row">
+                    <div class="col-4">
+                        <img src="{{ listing.image }}" class="listing-image">
+                    </div>
+                    <div class="col-8">
+                        <h3>{{ listing.title }}</h3>
+                        <p class="listing-price"><b>Price:</b> {{ listing.price }} &#x20AC;</p>
+                        <p class="listing-description">{{ listing.description }}</p>
+                        <p><b>Category:</b> {{ listing.category }}</p>
+                        <p class="listing-date"><b>Created</b> {{ listing.date }}</p>
+                        <p><b>By:</b> {{ listing.owner }}</p>
+                    </div>
+                    </div>
+                </div>
+            </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

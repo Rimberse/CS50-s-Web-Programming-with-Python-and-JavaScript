@@ -1,0 +1,38 @@
+body {
+    padding: 10px;
+}
+
+form {
+    margin-bottom: 15px;
+}
+
+.listing-item {
+    width: 75%;
+    margin: 25px auto;
+}
+
+.listing-item > a:link, .listing-item > a:visited {
+    text-decoration: inherit;
+    color: #000;
+}
+
+.listing-image {
+    width: 100%;
+}
+
+.listing-price {
+    font-size: 22px;
+}
+
+.listing-description {
+    font-size: 18px;
+}
+
+.listing-date {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5)
+}
+
+.listing-header {
+    margin-top: 25px;
+}
