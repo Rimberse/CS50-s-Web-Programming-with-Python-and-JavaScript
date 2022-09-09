@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Colors</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const heading = document.querySelector('#hello');
+
+                // document.querySelectorAll('button').forEach(button => {
+                //     button.onclick = () => {
+                //         // Accessing data property
+                //         heading.style.color = button.dataset.color;
+                //     }
+                // })
+
+                document.querySelector('select').onchange = function() {
+                    heading.style.color = this.value;
+                }
+            })
+        </script>
+    </head>
+    <body>
+        <h1 id="hello">Hello!</h1>
+        <!-- <button data-color="red" id="red">Red</button>
+        <button data-color="blue" id="blue">Blue</button>
+        <button data-color="green" id="green">Green</button> -->
+
+        <select>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+        </select>
+    </body>
+</html>
