@@ -4,8 +4,17 @@ django-admin startproject PROJECT_NAME - creates a django project
 python manage.py runserver - run the server on localhost
 python manage.py startapp hello - creates an app called hello within this django project
 python manage.py migrate - migrates the data into the database (creates all default table inside the database)
+python manage.py test - runs all unit tests
 
 python manage.py makemigrations - migrates the model after specifying the model in models.py
 python manage.py migrate - applies the migrations, creates the table and db
 python manage.py shell - to execute python commands in a shell
 python manage.py createsuperuser - permits to create an admin account
+
+Docker:
+docker-compose up - runs docker containers
+docker ps - display all runnig containers
+docker exec -it container_id bash -l - to run bash commands inside of a container
+
+Making migrations using docker and django:
+https://stackoverflow.com/questions/33992867/how-do-you-perform-django-database-migrations-when-using-docker-compose

@@ -1,0 +1,15 @@
+textarea {
+    min-height: 400px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: inherit;
+}
+
+.unread {
+    border: none;
+}
