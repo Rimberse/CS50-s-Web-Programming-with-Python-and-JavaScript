@@ -1,0 +1,44 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <h1>{{ author.username }}</h1>
+    <span hidden id="author-id">{{ author.id }}</span>
+    {% if user.is_authenticated %}
+        <span hidden id="user-id">{{ user.id }}</span>
+    {% endif %}
+
+    <div>
+        <div>Number of followers: <span id="followers"><strong>{{ followers }}</strong></span></div>
+        <div>Number of people that the user follows: <span><strong>{{ followings }}</strong></span></div>
+
+        <ul class="list-group">
+            {% for post in posts %}
+                <li class="list-group-item">
+                    <p id="post-content">{{ post.content }}</p>
+                    <time><em>{{ post.datetime }}</em></time>
+                </li>
+            {% empty %}
+                <li class="list-group-item">
+                    <h3>No posts</h3>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if user.is_authenticated and user.username != author.username %}
+            {% if isFollower %}
+                <button id="profile-btn" onclick="follow()" type="button" class="btn btn-primary btn-sm">Unfollow</button>
+            {% else %}
+                <button id="profile-btn" onclick="follow()" type="button" class="btn btn-primary btn-sm">Follow</button>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
+{% endblock %}

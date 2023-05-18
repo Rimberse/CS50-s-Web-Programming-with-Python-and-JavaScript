@@ -1,0 +1,31 @@
+{% block posts %}
+    {% for post in posts %}
+        <li class="list-group-item">
+            <span hidden id="post-id">{{ post.id }}</span>
+            <span hidden id="user-id">{{ user.id }}</span> 
+            <a id="post-profile" href="{% url 'profile' post.poster.id %}"><h3>{{ post.poster.username }}</h3></a>
+            {% if user.username == post.poster.username %}
+                <button id="post-edit-btn" type="button" class="btn btn-primary btn-sm">Edit</button>
+            {% endif %}
+            <div id="post-content-view">
+                <p id="post-content">{{ post.content }}</p>
+            </div>
+            <div id="post-content-edit-view">
+                <textarea id="post-content-edit"></textarea>
+            </div>
+            <time><em>{{ post.datetime }}</em></time>
+            <div id="post-like-tracker">
+                {% if post.poster.username == user.username or not user.is_authenticated %}
+                    <button id="post-like-btn" disabled><i class="bi bi-heart-fill"></i></button>
+                {% else %}
+                    <button id="post-like-btn"><i class="bi bi-heart-fill"></i></button>
+                {% endif %}
+                <h6 id="post-likes">{{ post.likers.count }}</h6>
+            </div>
+        </li>
+    {% empty %}
+        <li class="list-group-item">
+            <h3>No posts</h3>
+        </li>
+    {% endfor %}
+{% endblock %}

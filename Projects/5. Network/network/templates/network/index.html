@@ -1,0 +1,58 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h1>All Posts</h1>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <ul class="list-group">
+        {% if user.is_authenticated %}
+            <li class="list-group-item add-post">
+                <h2>New Post</h2>
+                <form id="post-form" action="{% url 'post' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="user_id" value="{{ request.user.id }}">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Type something..." name="content" id="post-text"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-primary" id="post-button" disabled="true" value="Post"/>
+                </form>
+            </li>
+        {% endif %}
+
+        {% include "network/posts.html" %}
+    </ul>
+
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% if has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'load_page' current_page|add:"-1" %}" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+            {% endif %}
+            {% for page in page_range %}
+                {% if page == current_page %}
+                    <li class="page-item active" aria-current="page">
+                {% else %}
+                    <li class="page-item">
+                {% endif %}
+                        <a class="page-link" href="{% url 'load_page' page %}">{{ page }} <span class="sr-only">(current)</span></a>
+                    </li>
+            {% endfor %}
+            {% if has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'load_page' current_page|add:"1" %}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+}
+
+#post-like-btn {
+    font-size: 18px;
+    color: red;
+}
+
+#post-like-btn:focus {
+    outline: none;
+}
+
+#post-likes {
+    margin-left: 7px;
+    font-size: 18px;
+    display: inline;
+}
+
+#post-content-view {
+    display: block;
+}
+
+#post-content-edit-view {
+    display: none;
+}
+
+#post-content-view, #post-content-edit-view {
+    margin-top: 12px;
+}
+
+.pagination {
+    margin: 15px;
+}
